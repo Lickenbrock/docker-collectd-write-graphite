@@ -14,6 +14,7 @@ LoadPlugin interface
 LoadPlugin uptime
 LoadPlugin swap
 LoadPlugin write_graphite
+LoadPlugin python
 
 <Plugin cpu>
   ReportByCpu {{ REPORT_BY_CPU | default("false") }}
@@ -71,6 +72,12 @@ LoadPlugin write_graphite
    SeparateInstances true
    StoreRates true
    AlwaysAppendDS false
+   Protocol "tcp"
  </Carbon>
 </Plugin>
 
+<Plugin python>
+  ModulePath "/usr/lib/collectd"
+  Interactive False
+  Import "cuda_collectd"
+</Plugin>
