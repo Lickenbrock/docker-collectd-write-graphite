@@ -1,0 +1,14 @@
+version: "2.3"
+services:
+  collectd:
+    build:
+      context: .
+      dockerfile: Dockerfile-lbt-cuda-collectd
+    image: lbt-collectd:latest
+    container_name: collectd
+    runtime: nvidia
+    environment:
+      - GRAPHITE_HOST=10.38.0.158
+      - HOST_NAME=zeta
+    volumes:
+      - /srv/docker/influxdb/data:/var/lib/influxdb
